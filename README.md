@@ -167,8 +167,6 @@ git commit -m "ضفت ميزة جامدة 🔥"
 
 ---
 
-> 🧬 Triecback هو جزء من منظومة أدوات **Triecbot** لتسهيل إدارة السيرفرات الذكية 🔥
-
 ---
 
 ## About Developer 
