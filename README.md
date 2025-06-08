@@ -42,7 +42,7 @@
 
 ### 1. حمل المشروع
 ```bash
-git clone https://github.com/Abdou-rx/triecback.git
+git clone https://github.com/abdou-da0wew/triecback.git
 cd triecback
 ````
 
@@ -102,12 +102,14 @@ src/
 ├── models/          # الموديلز بتاعت MongoDB 
 │   └── Backup.js
 ├── services/        # لوجيك استرجاع وحفظ البيانات
+│   ├── backupService.js
+│   └── databaseService.js
 ├── utils/           # الملفات المساعدة (زي الإنفايتات)
 │   ├── backupUtils.js
 │   └── permissionUtils.js 
-├── config.js # طبقه حماية لأنها بتجيب المتغيرات من .env
+├── config.js       # طبقه حماية لأنها بتجيب المتغيرات من .env
 ├── .env # هنا أي متغيرات زي التوكن او الحجات الحساسة
-└── index.js         # نقطة البداية
+└── index.js        # نقطة البداية
 ```
 
 ---
