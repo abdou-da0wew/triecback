@@ -7,7 +7,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "author": "Abdou",
+  "author": "abdou-da0wew",
   "license": "MIT",
   "keywords": [
     "discord",
@@ -20,10 +20,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Abdou-rx/triecback.git"
+    "url": "https://github.com/abdou-da0wew/triecback.git"
   },
   "bugs": {
-    "url": "https://github.com/Abdou-rx/triecback/issues"
+    "url": "https://github.com/abdou-da0wew/triecback/issues"
   },
   "homepage": "https://triecbot.xyz",
   "engines": {
