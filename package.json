@@ -1,0 +1,40 @@
+{
+  "name": "triecback",
+  "version": "1.0.0",
+  "description": "نظام نسخ احتياطي ذكي لمستخدمي ديسكورد - جزء من Triecbot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Abdou",
+  "license": "MIT",
+  "keywords": [
+    "discord",
+    "backup",
+    "triecbot",
+    "mongodb",
+    "discord.js",
+    "roles",
+    "server-management"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Abdou-rx/triecback.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Abdou-rx/triecback/issues"
+  },
+  "homepage": "https://triecbot.xyz",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "mongoose": "^8.3.2",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
