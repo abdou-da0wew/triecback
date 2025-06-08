@@ -1,9 +1,12 @@
-# Triecback - نظام النسخ الاحتياطي للمستخدمين على ديسكورد
+# Triecback - User Backup System for Discord Servers
 
 ![Discord](https://img.shields.io/badge/Discord-v14-blue)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow)
 
-> 🧠 Triecback هو جزء من نظام [Triecbot](https://triecbot.xyz) الذكي، واللي هدفه يخلي إدارة السيرفرات احترافية وسلسة.
+> 🧠 Triecback is a core part of the [Triecbot](https://triecbot.xyz) smart ecosystem, designed to make server management smooth, smart, and professional.
+
+
+[🇪🇬 Arabic Translation](./lang/README-AR.md)
 
 ---
 
@@ -16,113 +19,110 @@
 
 ---
 
-## ✨ المميزات
+## ✨ Features
 
-- 🔄 إنشاء نسخة احتياطية كاملة من جميع السيرفرات المشتركة  
-- 🔐 حفظ جميع الرولات والصلاحيات الخاصة بكل يوزر  
-- 🔗 إنشاء دعوات دائمة (Permanent Invites) تلقائيًا  
-- 🛡️ نظام موافقة ذكي لإعادة الصلاحيات الحساسة  
-- 📬 إرسال تقرير مفصل بالـ DMs للمستخدم  
-- ☁️ دعم MongoDB Atlas لتخزين آمن وسريع  
-- 📆 حذف تلقائي للنسخ بعد 30 يوم لتقليل التخزين  
-
----
-
-## 🛠️ متطلبات التثبيت
-
-| الأداة       | الإصدار المطلوب          |
-|-------------|--------------------------|
-| Node.js     | v16 أو أعلى             |
-| MongoDB     | Atlas أو سيرفر محلي      |
-| Discord Bot | صلاحيات: `MANAGE_ROLES`, `CREATE_INSTANT_INVITE`, `SEND_MESSAGES`, `VIEW_CHANNEL` |
+- 🔄 Full backup of all mutual servers  
+- 🔐 Stores user roles and permissions accurately  
+- 🔗 Auto-generates permanent invite links  
+- 🛡️ Smart approval system for restoring sensitive permissions  
+- 📬 Sends detailed DM reports to users  
+- ☁️ MongoDB Atlas support for secure and fast storage  
+- 📆 Auto-delete backups after 30 days to save space  
 
 ---
 
-## 🔧 خطوات الإعداد
+## 🛠️ Requirements
 
-### 1. حمل المشروع
+| Tool         | Required Version          |
+|--------------|----------------------------|
+| Node.js      | v16 or higher              |
+| MongoDB      | Atlas or local instance    |
+| Discord Bot  | Permissions: `MANAGE_ROLES`, `CREATE_INSTANT_INVITE`, `SEND_MESSAGES`, `VIEW_CHANNEL` |
+
+---
+
+## 🔧 Setup Instructions
+
+### 1. Clone the project
 ```bash
 git clone https://github.com/abdou-da0wew/triecback.git
 cd triecback
-````
+```
 
-### 2. تثبيت البكجات
-
+### 2. Install dependencies
 ```bash
 npm install
 ```
 
-### 3. إعداد ملف البيئة `.env`
-
+### 3. Configure `.env` file
 ```env
-TOKEN=حط التوكن هنا
-MONGO_URI=رابط الداتا بيز
-PREFIX=!  # أو أي برفكس يعجبك
-CLIENT_ID=اكتب هنا ID البوت
+TOKEN=your_token_here
+MONGO_URI=your_mongodb_uri
+PREFIX=!  # or any prefix you like
+CLIENT_ID=your_bot_id
 ```
 
-### 4. تشغيل البوت
-
+### 4. Start the bot
 ```bash
 npm start
 ```
 
 ---
 
-## 🚀 طريقة الاستخدام
+## 🚀 Usage Guide
 
-### 🔸 أمر إنشاء النسخة الاحتياطية
+### 🔸 Create Backup Command
 
 ```bash
-ibackup true false
+!backup true false
 ```
 
-* أول `true/false`: هل تحفظ الرولات؟
-* ثاني `true/false`: هل تحفظ فقط السيرفرات اللي عندك فيها صلاحيات إدارية؟
+* First `true/false`: Save user roles?
+* Second `true/false`: Only include servers where you have admin rights?
 
-> ✅ يتم حفظ النسخ في قاعدة البيانات مباشرة، ومربوطة بحساب كل مستخدم.
-
----
-
-### 🔹 استعادة النسخة الاحتياطية
-
-* لما يدخل اليوزر تاني للسيرفر، Triecback بيطلب من الأدمن الموافقة على استرجاع رتبته.
-* بمجرد الموافقة، بيتم تفعيل الرتب والصلاحيات تلقائيًا.
+> ✅ Backups are stored in the database and linked to each user’s account.
 
 ---
 
-## 📂 ملفات المشروع
+### 🔹 Restore Backup
+
+* When the user rejoins a server, Triecback will ask admins for permission to restore their roles.
+* Once approved, the roles and permissions will be applied automatically.
+
+---
+
+## 📂 Project Structure
 
 ```bash
 src/
-├── commands/        # هنا ملف اللي بيكون فيه كل الاوامر
-│   └── backup.js    # أمر النسخ
-├── events/          # الأحداث (زي الانضمام للسيرفر)
+├── commands/        # All commands
+│   └── backup.js    # Backup command
+├── events/          # Discord events like guild join
 │   └── guildCreate.js
-├── models/          # الموديلز بتاعت MongoDB 
+├── models/          # MongoDB models
 │   └── Backup.js
-├── services/        # لوجيك استرجاع وحفظ البيانات
+├── services/        # Backup and DB logic
 │   ├── backupService.js
 │   └── databaseService.js
-├── utils/           # الملفات المساعدة (زي الإنفايتات)
+├── utils/           # Helper utilities
 │   ├── backupUtils.js
 │   └── permissionUtils.js 
-├── config.js       # طبقه حماية لأنها بتجيب المتغيرات من .env
-├── .env # هنا أي متغيرات زي التوكن او الحجات الحساسة
-└── index.js        # نقطة البداية
+├── config.js        # Loads environment variables
+├── .env             # Sensitive keys and configs
+└── index.js         # Main entry point
 ```
 
 ---
 
-## 📜 الأوامر المدعومة
+## 📜 Supported Commands
 
-| الأمر         | الوظيفة                             | مثال                 |
-| ------------- | ----------------------------------- | -------------------- |
-| `!backup <r>` | إنشاء نسخة احتياطية مع/بدون الرولات | `!backup true false` |
+| Command          | Description                          | Example               |
+|------------------|--------------------------------------|------------------------|
+| `!backup <r>`    | Create a backup with/without roles   | `!backup true false`   |
 
 ---
 
-## 📸 صورة من جوا النظام
+## 📸 Screenshots
 
 <p float="left">
   <img src="https://cdn.triecbot.xyz/media/aha0gt0.png" width="400"/>
@@ -131,45 +131,43 @@ src/
 
 ---
 
-## 🧠 أمور لازم تعرفها
+## 🧠 Notes
 
-* 📅 النسخ تُحذف تلقائيًا بعد **30 يوم** من تاريخ الإنشاء.
-* ✅ البوت يحتاج صلاحيات أدمن لتطبيق الرتب والدعوات.
-* 📤 التقارير يتم إرسالها للمستخدم مباشرة على الخاص.
+* 📅 Backups are automatically deleted after **30 days**.
+* ✅ Bot must have admin permissions to apply roles and generate invites.
+* 📤 Backup reports are sent directly to the user via DM.
 
 ---
 
-## 🤝 المساهمة
+## 🤝 Contributing
 
-عايز تطور Triecback؟ تعال ساهم:
+Wanna improve Triecback? Fork and go wild:
 
 ```bash
 git clone fork https://github.com/Abdou-rx/triecback
 git checkout -b feature/super-idea
-git commit -m "ضفت ميزة جامدة 🔥"
+git commit -m "Added a cool feature 🔥"
 ```
 
 ---
 
-## 📞 الدعم والتواصل
+## 📞 Support & Contact
 
 * GitHub: [Abdou-rx](https://github.com/Abdou-rx)
-* الحساب التاني: [abdou-da0wew](https://github.com/abdou-da0wew)
-* الموقع الرسمي: [Triecbot.xyz](https://triecbot.xyz)
-* دعوة البوت: [اضغط هنا](https://reg.triecbot.xyz/invite)
-* سيرفر الدعم: [Join Support](https://reg.triecbot.xyz/support)
+* Backup GitHub: [abdou-da0wew](https://github.com/abdou-da0wew)
+* Official Website: [Triecbot.xyz](https://triecbot.xyz)
+* Invite Bot: [Click here](https://reg.triecbot.xyz/invite)
+* Support Server: [Join Support](https://reg.triecbot.xyz/support)
 
 ---
 
-## ⚖️ الترخيص
+## ⚖️ License
 
-هذا المشروع مرخص تحت رخصة [MIT License](LICENSE).
-
----
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## About Developer 
+## About the Developer
 
 <p align="center">
   <img src="https://img.shields.io/badge/Developer-Abdou-black?style=for-the-badge&logo=github" />
