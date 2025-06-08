@@ -1,9 +1,11 @@
+require('dotenv').config();
+
 module.exports = {
-  prefix: '', // Or your preferred prefix
-  token: 'MTM3OTg1MjI0NTA0MjA3MzY5MA.GCHGXi.Aq5cuRNVjhhAmHyH2_wWHjX1xkBH3VlsA735HM',
-  mongoURI: 'mongodb+srv://bothaider66:JmJjQNv3CCAWbAny@cluster0.p6dqq.mongodb.net/trikyBot',
+  prefix: process.env.PREFIX || 'i', // Or your preferred prefix
+  token: process.env.TOKEN,
+  mongoURI: process.env.MONGO_URI,
   backupSettings: {
-    approvalChannelName: 'backup-approvals',
-    defaultBackupExpiry: 30 * 24 * 60 * 60 * 1000 // 30 يوم
+    approvalChannelName: process.env.BACKUP_APPROVAL_CHANNEL || 'backup-approvals',
+    defaultBackupExpiry: parseInt(process.env.BACKUP_EXPIRY_MS, 10) || 30 * 24 * 60 * 60 * 1000 // 30 a day
   }
 };
